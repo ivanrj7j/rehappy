@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../modules/textInput.dart';
+import 'profile.dart';
+import 'home.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -49,7 +51,8 @@ class _LoginPageState extends State<LoginPage> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  print("Hello clicky!");
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (contenxt) => Menu()));
                 },
                 child: Text("Login/Register")),
           ],
