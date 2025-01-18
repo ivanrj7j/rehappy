@@ -3,22 +3,15 @@ import 'package:flutter/material.dart';
 class DeleteSave extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: 188,
-          height: 92,
-          padding: const EdgeInsets.only(
-            top: 10,
-            left: 10,
-            right: 12,
-            bottom: 10,
-          ),
+    return IntrinsicWidth(
+      child: IntrinsicHeight(
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           clipBehavior: Clip.antiAlias,
           decoration: ShapeDecoration(
             gradient: LinearGradient(
-              begin: Alignment(0.00, -1.00),
-              end: Alignment(0, 1),
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
               colors: [Color(0xFF191919), Color(0xFF181818)],
             ),
             shape: RoundedRectangleBorder(
@@ -44,29 +37,48 @@ class DeleteSave extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'Delete community',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontFamily: 'Kdam Thmor Pro',
-                  fontWeight: FontWeight.w400,
+              ElevatedButton(
+                onPressed: (){
+                  // Handle delete action
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    padding: EdgeInsets.zero,
+                    shadowColor: Colors.transparent
+                ),
+                child: Text(
+                  'Delete community',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontFamily: 'Kdam Thmor Pro',
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ),
-              const SizedBox(height: 10),
-              Text(
-                'Save',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontFamily: 'Kdam Thmor Pro',
-                  fontWeight: FontWeight.w400,
+              ElevatedButton(
+                onPressed: (){
+                  // Handle save action
+                },
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.transparent,
+                    padding: EdgeInsets.zero,
+                    shadowColor: Colors.transparent
+                ),
+                child: Text(
+                  'Save',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontFamily: 'Kdam Thmor Pro',
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ),
             ],
           ),
         ),
-      ],
+      ),
     );
   }
 }
