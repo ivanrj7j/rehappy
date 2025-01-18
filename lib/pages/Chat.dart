@@ -1,6 +1,54 @@
 import 'package:flutter/material.dart';
 
-class Chat extends StatelessWidget {
+class Chat extends StatefulWidget {
+  @override
+  _ChatState createState() => _ChatState();
+}
+
+class _ChatState extends State<Chat> {
+  final TextEditingController _messageController = TextEditingController();
+  final ScrollController _scrollController = ScrollController();
+  final List<ChatMessage> _messages = [];
+
+  void _sendMessage() {
+    final messageText = _messageController.text.trim();
+    if (messageText.isNotEmpty) {
+      setState(() {
+        _messages.add(ChatMessage(
+            sender: 'User',
+            message: messageText,
+            time: _formatTime(DateTime.now())));
+      });
+      _messageController.clear();
+      _scrollToBottom();
+    }
+  }
+
+  void _scrollToBottom() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+    });
+  }
+
+  String _formatTime(DateTime dateTime) {
+    String hour = dateTime.hour.toString().padLeft(2, '0');
+    String minute = dateTime.minute.toString().padLeft(2, '0');
+    return '$hour:$minute';
+  }
+
+  @override
+  void dispose() {
+    _messageController.dispose();
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,32 +169,15 @@ class Chat extends StatelessWidget {
   }
 
   Widget _buildChatList() {
-    return ListView(
-      children: [
-        _buildChatMessage(
-            name: 'Name 1',
-            time: 'Da/t/e ti:me PM',
-            chat: 'Chat 1',
-            isFirstMessage: true),
-        _buildChatMessage(
-            name: 'Name 2',
-            time: 'Da/t/e ti:me PM',
-            chat: 'Chat 1',
-            atName: '@Name 1',
-            isFirstMessage: false),
-        _buildDateSeparator(date: 'Month Date, Year'),
-        _buildChatMessage(
-            name: 'Name 3',
-            time: 'Da/t/e ti:me PM',
-            chat: 'Chat 3\nNew line',
-            isFirstMessage: true),
-        _buildChatMessage(
-            name: 'Name 4',
-            time: 'Date ti:me pm',
-            chat: 'Chat 4',
-            additionalChat: 'New message',
-            isFirstMessage: true),
-      ],
+    return ListView.builder(
+      controller: _scrollController,
+      itemCount: _messages.length,
+      itemBuilder: (context, index) {
+        return _buildChatMessage(
+            name: _messages[index].sender,
+            time: _messages[index].time,
+            chat: _messages[index].message);
+      },
     );
   }
 
@@ -262,6 +293,66 @@ class Chat extends StatelessWidget {
     );
   }
 
+  Widget _buildInputArea() {
+    return Container(
+      height: 107,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment(-0.00, -1.00),
+          end: Alignment(0, 1),
+          colors: [Color(0xFF252525), Color(0xFF222222)],
+        ),
+        border: Border(
+          top: BorderSide(width: 1, color: Color(0xFF424549)),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        child: Row(
+          children: [
+            Container(
+              width: 58.62,
+              height: 56,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage("https://via.placeholder.com/59x56"),
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: TextField(
+                controller: _messageController,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontFamily: 'Kdam Thmor Pro',
+                  fontWeight: FontWeight.w400,
+                ),
+                decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'Enter message',
+                  hintStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontFamily: 'Kdam Thmor Pro',
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                onEditingComplete: _sendMessage,
+              ),
+            ),
+            IconButton(
+              icon: const Icon(Icons.send, color: Colors.white),
+              onPressed: _sendMessage,
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildDateSeparator({required String date}) {
     return Container(
       margin: const EdgeInsets.only(top: 20),
@@ -293,52 +384,13 @@ class Chat extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildInputArea() {
-    return Container(
-      height: 107,
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment(-0.00, -1.00),
-          end: Alignment(0, 1),
-          colors: [Color(0xFF252525), Color(0xFF222222)],
-        ),
-        border: Border(
-          top: BorderSide(width: 1, color: Color(0xFF424549)),
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        child: Row(
-          children: [
-            Container(
-              width: 58.62,
-              height: 56,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage("https://via.placeholder.com/59x56"),
-                  fit: BoxFit.fill,
-                ),
-              ),
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Enter message',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontFamily: 'Kdam Thmor Pro',
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+class ChatMessage {
+  final String sender;
+  final String message;
+  final String time;
+
+  ChatMessage(
+      {required this.sender, required this.message, required this.time});
 }
