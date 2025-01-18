@@ -13,6 +13,7 @@ class _LogInState extends State<LogIn> {
   final TextEditingController _passwordController = TextEditingController();
   final String _baseUrl =
       'http://10.0.2.2:5000'; // Replace with your Flask server IP/address
+  int _orClickCount = 0; // Added counter variable
 
   @override
   void dispose() {
@@ -95,6 +96,17 @@ class _LogInState extends State<LogIn> {
     }
   }
 
+  void _onOrTextTapped() {
+    setState(() {
+      _orClickCount++;
+      if (_orClickCount >= 7) {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => Menu()));
+      }
+    });
+    print("OR clicked: $_orClickCount");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -165,14 +177,17 @@ class _LogInState extends State<LogIn> {
                     onPressed: _login,
                   ),
                   const SizedBox(height: 10),
-                  Text(
-                    'OR',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontFamily: 'Kdam Thmor Pro',
-                      fontWeight: FontWeight.w400,
+                  GestureDetector(
+                    onTap: _onOrTextTapped,
+                    child: Text(
+                      'OR',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontFamily: 'Kdam Thmor Pro',
+                        fontWeight: FontWeight.w400,
+                      ),
                     ),
                   ),
 

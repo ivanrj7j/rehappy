@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'chat.dart'; // Import the chat.dart file
 
 // Community Widget Component
@@ -104,12 +103,9 @@ class CommunityWidget extends StatelessWidget {
 // Streak Circle Component
 class StreakCircle extends StatelessWidget {
   final String value;
-  final String label;
-
   const StreakCircle({
     Key? key,
     required this.value,
-    required this.label,
   }) : super(key: key);
 
   @override
@@ -160,16 +156,19 @@ class StreakCircle extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 50,
+            left: 0,
             top: 132,
-            child: Text(
-              label,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontFamily: 'Kdam Thmor Pro',
-                fontWeight: FontWeight.w400,
+            child: SizedBox(
+              width: 200,
+              child: Text(
+                int.parse(value) <= 1 ? 'day' : 'days',
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontFamily: 'Kdam Thmor Pro',
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ),
           ),
@@ -370,7 +369,27 @@ class RecentCommunityList extends StatelessWidget {
 }
 
 // Main Menu Widget
-class Menu extends StatelessWidget {
+class Menu extends StatefulWidget {
+  const Menu({super.key});
+  @override
+  _MenuState createState() => _MenuState();
+}
+
+class _MenuState extends State<Menu> {
+  int _days = 0;
+
+  void _addStreak() {
+    setState(() {
+      _days++;
+    });
+  }
+
+  void _stopStreak() {
+    setState(() {
+      _days = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -457,48 +476,28 @@ class Menu extends StatelessWidget {
                       ),
                     ),
 
-                    // Year Circle
-                    Positioned(
-                      left: 100,
-                      top: 60,
-                      child: const StreakCircle(value: '1', label: 'YEARS'),
-                    ),
-
-                    // Months Circle
-                    Positioned(
-                      left: 0,
-                      top: 233,
-                      child: const StreakCircle(value: '11', label: 'MONTHS'),
-                    ),
-
                     // Days Circle
                     Positioned(
-                      left: 200,
-                      top: 233,
-                      child: const StreakCircle(value: '28', label: 'DAYS'),
+                      left: 100, // Adjusted horizontal position
+                      top: 60, // Adjusted vertical position
+                      child: StreakCircle(value: '$_days'),
                     ),
 
                     // Buttons
                     Positioned(
-                      left: 39,
-                      top: 453,
+                      left: 50, // Adjusted horizontal position
+                      top: 280, // Adjusted vertical position
                       child: CustomButton(
                         text: 'Add Streak',
-                        onTap: () {
-                          print('Add Streak tapped');
-                          // Add streak action
-                        },
+                        onTap: _addStreak,
                       ),
                     ),
                     Positioned(
-                      left: 239,
-                      top: 453,
+                      left: 230, // Adjusted horizontal position
+                      top: 280, // Adjusted vertical position
                       child: CustomButton(
                         text: 'Stop streak',
-                        onTap: () {
-                          print('Stop Streak tapped');
-                          // Stop streak action
-                        },
+                        onTap: _stopStreak,
                       ),
                     ),
                   ],
