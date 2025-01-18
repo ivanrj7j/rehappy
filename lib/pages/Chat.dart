@@ -161,6 +161,78 @@ class _ChatState extends State<Chat> {
     String? atName,
     String? additionalChat,
   }) {
+    if (chat.startsWith('#streak ')) {
+      String streakMessage = chat.substring(7); //remove #streak and space
+      return Container(
+          margin: const EdgeInsets.only(left: 10, top: 20, right: 10),
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: const Color.fromRGBO(255, 255, 0, 1),
+            borderRadius:
+                BorderRadius.circular(10), // Rounded edges for streak box
+            border: Border.all(
+              color: const Color.fromRGBO(204, 204, 0, 1),
+              width: 1,
+            ),
+          ),
+          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Container(
+              width: 50,
+              height: 50,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          name,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontFamily: 'Kdam Thmor Pro',
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        Text(
+                          time,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 14,
+                            fontFamily: 'Kdam Thmor Pro',
+                            fontWeight: FontWeight.w400,
+                          ),
+                        )
+                      ]),
+                  Text(
+                    streakMessage,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontFamily: 'Kdam Thmor Pro',
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  if (additionalChat != null)
+                    Text(
+                      additionalChat,
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontFamily: 'Kdam Thmor Pro',
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                ]))
+          ]));
+    }
     if (chat.startsWith('#task ')) {
       String taskMessage = chat.substring(6); //remove #task and space
       return Container(
@@ -168,6 +240,8 @@ class _ChatState extends State<Chat> {
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
               color: const Color.fromRGBO(0, 25, 0, 1),
+              borderRadius:
+                  BorderRadius.circular(10), // Rounded edges for task box
               border: Border.all(
                   color: const Color.fromRGBO(0, 64, 0, 1), width: 1)),
           child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
