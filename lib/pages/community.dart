@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class DeleteSave extends StatelessWidget {
+  const DeleteSave({super.key});
+
   @override
   Widget build(BuildContext context) {
     return IntrinsicWidth(
@@ -38,14 +40,13 @@ class DeleteSave extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: (){
+                onPressed: () {
                   // Handle delete action
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     padding: EdgeInsets.zero,
-                    shadowColor: Colors.transparent
-                ),
+                    shadowColor: Colors.transparent),
                 child: Text(
                   'Delete community',
                   style: TextStyle(
@@ -57,14 +58,13 @@ class DeleteSave extends StatelessWidget {
                 ),
               ),
               ElevatedButton(
-                onPressed: (){
+                onPressed: () {
                   // Handle save action
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.transparent,
                     padding: EdgeInsets.zero,
-                    shadowColor: Colors.transparent
-                ),
+                    shadowColor: Colors.transparent),
                 child: Text(
                   'Save',
                   style: TextStyle(

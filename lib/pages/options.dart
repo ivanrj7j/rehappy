@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Options extends StatelessWidget {
+  const Options({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +14,8 @@ class Options extends StatelessWidget {
             colors: [Color(0xFF191919), Color(0xFF242424)],
           ),
         ),
-        child: SingleChildScrollView( // Make the column scrollable
+        child: SingleChildScrollView(
+          // Make the column scrollable
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
@@ -38,7 +41,9 @@ class Options extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Transform(
-          transform: Matrix4.identity()..translate(0.0, 0.0)..rotateZ(3.14),
+          transform: Matrix4.identity()
+            ..translate(0.0, 0.0)
+            ..rotateZ(3.14),
           child: Container(
             width: 33,
             height: 33,
@@ -52,7 +57,9 @@ class Options extends StatelessWidget {
           ),
         ),
         Transform(
-          transform: Matrix4.identity()..translate(0.0, 0.0)..rotateZ(3.14),
+          transform: Matrix4.identity()
+            ..translate(0.0, 0.0)
+            ..rotateZ(3.14),
           child: Container(
             width: 33,
             height: 33,
@@ -68,6 +75,7 @@ class Options extends StatelessWidget {
       ],
     );
   }
+
   Widget _buildCommunityInfoSection(BuildContext context) {
     return Center(
       child: Stack(
@@ -136,8 +144,7 @@ class Options extends StatelessWidget {
                 border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey.shade700),
                   borderRadius: BorderRadius.circular(5),
-                )
-            ),
+                )),
           ),
         ],
       ),
@@ -183,10 +190,11 @@ class Options extends StatelessWidget {
   }
 }
 
-
-
 class MemberList extends StatelessWidget {
-  final List<String> memberNames = List.generate(20, (index) => 'Member ${index + 1}');
+  final List<String> memberNames =
+      List.generate(20, (index) => 'Member ${index + 1}');
+
+  MemberList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -196,7 +204,7 @@ class MemberList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: memberNames.length,
         separatorBuilder: (context, index) => const SizedBox(width: 10),
-        itemBuilder: (context, index){
+        itemBuilder: (context, index) {
           return _buildMemberBox(context, memberNames[index]);
         },
       ),
@@ -204,7 +212,7 @@ class MemberList extends StatelessWidget {
   }
 
   Widget _buildMemberBox(BuildContext context, String name) {
-    return Container(
+    return SizedBox(
       width: 50,
       child: Stack(
         alignment: Alignment.center,

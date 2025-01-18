@@ -1,13 +1,10 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'menu.dart';
-
-void main() {
-  runApp(MaterialApp(
-    home: LogIn(),
-  ));
-}
+import 'package:http/http.dart' as http;
 
 class LogIn extends StatefulWidget {
+  const LogIn({super.key});
+
   @override
   _LogInState createState() => _LogInState();
 }
@@ -15,6 +12,8 @@ class LogIn extends StatefulWidget {
 class _LogInState extends State<LogIn> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final String _baseUrl =
+      'http://10.0.2.2:5000'; // Replace with your Flask server IP/address
 
   @override
   void dispose() {
@@ -23,19 +22,70 @@ class _LogInState extends State<LogIn> {
     super.dispose();
   }
 
-  void _login() {
-    // Perform login logic here
-    print('Username: ${_usernameController.text}');
-    print('Password: ${_passwordController.text}');
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Menu()));
-    // Add your authentication logic or navigation here
+  Future<void> _login() async {
+    final username = _usernameController.text;
+    final password = _passwordController.text;
+
+    try {
+      final response = await http.post(
+        Uri.parse('$_baseUrl/login'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'username': username,
+          'password': password,
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.body);
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(responseData['message'])));
+      } else {
+        final responseData = jsonDecode(response.body);
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(responseData['message'])));
+        print('Login failed. Status Code: ${response.statusCode}');
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Error connecting to server")));
+      print('Error during login: $e');
+    }
   }
 
-  void _signUp() {
-    // Perform sign-up logic here
-    print('Sign up requested');
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Menu()));
-    // Add navigation or sign-up related actions
+  Future<void> _signUp() async {
+    final username = _usernameController.text;
+    final password = _passwordController.text;
+
+    try {
+      final response = await http.post(
+        Uri.parse('$_baseUrl/register'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, String>{
+          'username': username,
+          'password': password,
+        }),
+      );
+
+      if (response.statusCode == 201) {
+        final responseData = jsonDecode(response.body);
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(responseData['message'])));
+      } else {
+        final responseData = jsonDecode(response.body);
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(responseData['message'])));
+        print('Sign up failed. Status Code: ${response.statusCode}');
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Error connecting to server")));
+      print('Error during sign up: $e');
+    }
   }
 
   @override
@@ -141,7 +191,8 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
 
-  CustomTextField({
+  const CustomTextField({
+    super.key,
     required this.controller,
     required this.labelText,
     required this.hintText,
@@ -205,7 +256,7 @@ class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
 
-  CustomButton({required this.text, required this.onPressed});
+  const CustomButton({super.key, required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {

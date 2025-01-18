@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class SignUp extends StatelessWidget {
+  const SignUp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -8,7 +10,8 @@ class SignUp extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.black.withOpacity(0.5),
         ),
-        child: SingleChildScrollView( // Make column scrollable
+        child: SingleChildScrollView(
+          // Make column scrollable
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
@@ -33,7 +36,9 @@ class SignUp extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Transform(
-          transform: Matrix4.identity()..translate(0.0, 0.0)..rotateZ(3.14),
+          transform: Matrix4.identity()
+            ..translate(0.0, 0.0)
+            ..rotateZ(3.14),
           child: Container(
             width: 33,
             height: 33,
@@ -46,7 +51,9 @@ class SignUp extends StatelessWidget {
           ),
         ),
         Transform(
-          transform: Matrix4.identity()..translate(0.0, 0.0)..rotateZ(3.14),
+          transform: Matrix4.identity()
+            ..translate(0.0, 0.0)
+            ..rotateZ(3.14),
           child: Container(
             width: 33,
             height: 33,
@@ -62,7 +69,6 @@ class SignUp extends StatelessWidget {
       ],
     );
   }
-
 
   Widget _buildProfilePictureSection(BuildContext context) {
     return Center(
@@ -88,7 +94,7 @@ class SignUp extends StatelessWidget {
           ),
           SizedBox(height: 10),
           GestureDetector(
-            onTap: (){
+            onTap: () {
               // Handle profile image selection
             },
             child: Container(
@@ -103,8 +109,7 @@ class SignUp extends StatelessWidget {
                   ),
                   border: Border.all(
                     color: Color(0xFF424549),
-                  )
-              ),
+                  )),
               child: Center(
                 child: Container(
                   width: 25,
@@ -148,8 +153,7 @@ class SignUp extends StatelessWidget {
                 border: OutlineInputBorder(
                   borderSide: BorderSide(color: Color(0xFFFBFCF6)),
                   borderRadius: BorderRadius.circular(10),
-                )
-            ),
+                )),
           ),
         ],
       ),
@@ -180,9 +184,7 @@ class SignUp extends StatelessWidget {
                   border: OutlineInputBorder(
                     borderSide: BorderSide(color: Color(0xFFFBFCF6)),
                     borderRadius: BorderRadius.circular(10),
-                  )
-              )
-          ),
+                  ))),
         ],
       ),
     );
@@ -212,9 +214,7 @@ class SignUp extends StatelessWidget {
                 hintStyle: TextStyle(color: Color(0xFFA6A9AD)),
                 border: OutlineInputBorder(
                     borderSide: BorderSide(color: Color(0xFFFBFCF6)),
-                    borderRadius: BorderRadius.circular(10)
-                )
-            ),
+                    borderRadius: BorderRadius.circular(10))),
           ),
         ],
       ),

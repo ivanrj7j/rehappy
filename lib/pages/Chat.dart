@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Chat extends StatefulWidget {
+  const Chat({super.key});
+
   @override
   _ChatState createState() => _ChatState();
 }
@@ -158,7 +160,6 @@ class _ChatState extends State<Chat> {
     required String chat,
     String? atName,
     String? additionalChat,
-    bool isFirstMessage = false,
   }) {
     if (chat.startsWith('#task ')) {
       String taskMessage = chat.substring(6); //remove #task and space

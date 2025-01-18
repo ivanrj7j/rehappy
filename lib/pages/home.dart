@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Menu extends StatelessWidget {
+  const Menu({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -27,7 +29,7 @@ class Menu extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
+                      SizedBox(
                         width: 58.55,
                         height: 62.15,
                         child: Stack(
@@ -95,7 +97,7 @@ class Menu extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 1),
-                      Container(
+                      SizedBox(
                         width: 58.55,
                         height: 62.15,
                         child: Stack(
@@ -163,7 +165,7 @@ class Menu extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 1),
-                      Container(
+                      SizedBox(
                         width: 58.55,
                         height: 62.15,
                         child: Stack(
@@ -231,7 +233,7 @@ class Menu extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 1),
-                      Container(
+                      SizedBox(
                         width: 58.55,
                         height: 62.15,
                         child: Stack(
@@ -287,7 +289,7 @@ class Menu extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 1),
-                      Container(
+                      SizedBox(
                         width: 58.55,
                         height: 62.15,
                         child: Stack(
@@ -355,7 +357,7 @@ class Menu extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 1),
-                      Container(
+                      SizedBox(
                         width: 58.55,
                         height: 62.15,
                         child: Stack(
@@ -423,7 +425,7 @@ class Menu extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 1),
-                      Container(
+                      SizedBox(
                         width: 58.55,
                         height: 62.15,
                         child: Stack(
@@ -491,7 +493,7 @@ class Menu extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 1),
-                      Container(
+                      SizedBox(
                         width: 58.55,
                         height: 62.15,
                         child: Stack(
@@ -559,7 +561,7 @@ class Menu extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 1),
-                      Container(
+                      SizedBox(
                         width: 58.55,
                         height: 62.15,
                         child: Stack(
@@ -627,7 +629,7 @@ class Menu extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 1),
-                      Container(
+                      SizedBox(
                         width: 58.55,
                         height: 74.15,
                         child: Stack(
@@ -715,7 +717,7 @@ class Menu extends StatelessWidget {
               Positioned(
                 left: 6,
                 top: 342,
-                child: Container(
+                child: SizedBox(
                   width: 400,
                   height: 504,
                   child: Stack(
@@ -723,7 +725,7 @@ class Menu extends StatelessWidget {
                       Positioned(
                         left: 100,
                         top: 60,
-                        child: Container(
+                        child: SizedBox(
                           width: 200,
                           height: 200,
                           child: Stack(
@@ -789,7 +791,7 @@ class Menu extends StatelessWidget {
                       Positioned(
                         left: 0,
                         top: 233,
-                        child: Container(
+                        child: SizedBox(
                           width: 200,
                           height: 200,
                           child: Stack(
@@ -855,7 +857,7 @@ class Menu extends StatelessWidget {
                       Positioned(
                         left: 200,
                         top: 233,
-                        child: Container(
+                        child: SizedBox(
                           width: 200,
                           height: 200,
                           child: Stack(
@@ -1019,7 +1021,7 @@ class Menu extends StatelessWidget {
               Positioned(
                 left: -3,
                 top: -3,
-                child: Container(
+                child: SizedBox(
                   width: 418,
                   height: 130,
                   child: Stack(
@@ -1046,7 +1048,7 @@ class Menu extends StatelessWidget {
                       Positioned(
                         left: 18,
                         top: 53.41,
-                        child: Container(
+                        child: SizedBox(
                           width: 381,
                           height: 62.48,
                           child: Stack(

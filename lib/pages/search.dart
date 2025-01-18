@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Search extends StatelessWidget {
+  const Search({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +31,6 @@ class Search extends StatelessWidget {
     );
   }
 
-
   Widget _buildSearchBar(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
@@ -50,7 +51,9 @@ class Search extends StatelessWidget {
               // Handle back navigation or clear search
             },
             child: Transform(
-              transform: Matrix4.identity()..translate(0.0, 0.0)..rotateZ(3.14),
+              transform: Matrix4.identity()
+                ..translate(0.0, 0.0)
+                ..rotateZ(3.14),
               child: Container(
                 width: 32,
                 height: 32,
@@ -78,15 +81,14 @@ class Search extends StatelessWidget {
                       height: 20,
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: NetworkImage("https://via.placeholder.com/31x31"),
+                            image: NetworkImage(
+                                "https://via.placeholder.com/31x31"),
                             fit: BoxFit.fill,
                           ),
-                          shape: BoxShape.circle
-                      ) ,
+                          shape: BoxShape.circle),
                     ),
                   ),
-                  border: UnderlineInputBorder(borderSide: BorderSide.none)
-              ),
+                  border: UnderlineInputBorder(borderSide: BorderSide.none)),
             ),
           ),
         ],
@@ -161,12 +163,11 @@ class Search extends StatelessWidget {
   }
 }
 
-
-
-
 class CommunityList extends StatelessWidget {
-  final List<String> communityNames = List.generate(10, (index) => 'Community ${index + 1}');
+  final List<String> communityNames =
+      List.generate(10, (index) => 'Community ${index + 1}');
 
+  CommunityList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -176,20 +177,19 @@ class CommunityList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: communityNames.length,
         separatorBuilder: (context, index) => const SizedBox(width: 10),
-        itemBuilder: (context, index){
+        itemBuilder: (context, index) {
           return _buildCommunityBox(context, communityNames[index]);
         },
       ),
     );
   }
 
-
   Widget _buildCommunityBox(BuildContext context, String name) {
     return GestureDetector(
       onTap: () {
         // Handle community box tap
       },
-      child: Container(
+      child: SizedBox(
         width: 50,
         child: Stack(
           alignment: Alignment.center,

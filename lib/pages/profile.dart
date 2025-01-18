@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Profile extends StatelessWidget {
+  const Profile({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +14,8 @@ class Profile extends StatelessWidget {
             colors: [Color(0xFF191919), Color(0xFF242424)],
           ),
         ),
-        child: SingleChildScrollView( // Make the column scrollable
+        child: SingleChildScrollView(
+          // Make the column scrollable
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
@@ -36,7 +39,9 @@ class Profile extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Transform(
-          transform: Matrix4.identity()..translate(0.0, 0.0)..rotateZ(3.14),
+          transform: Matrix4.identity()
+            ..translate(0.0, 0.0)
+            ..rotateZ(3.14),
           child: Container(
             width: 33,
             height: 33,
@@ -50,7 +55,9 @@ class Profile extends StatelessWidget {
           ),
         ),
         Transform(
-          transform: Matrix4.identity()..translate(0.0, 0.0)..rotateZ(3.14),
+          transform: Matrix4.identity()
+            ..translate(0.0, 0.0)
+            ..rotateZ(3.14),
           child: Container(
             width: 33,
             height: 33,
@@ -117,7 +124,7 @@ class Profile extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     // Handle edit profile action
                   },
                   child: Container(
@@ -125,12 +132,10 @@ class Profile extends StatelessWidget {
                     height: 20,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                          image: NetworkImage("https://via.placeholder.com/20x20"),
-                          fit: BoxFit.fill,
-                        )
-                    ),
-                  )
-              ),
+                      image: NetworkImage("https://via.placeholder.com/20x20"),
+                      fit: BoxFit.fill,
+                    )),
+                  )),
             ],
           ),
           SizedBox(height: 10),
@@ -143,8 +148,7 @@ class Profile extends StatelessWidget {
                 border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey.shade700),
                   borderRadius: BorderRadius.circular(5),
-                )
-            ),
+                )),
           ),
         ],
       ),
@@ -187,11 +191,11 @@ class Profile extends StatelessWidget {
   }
 }
 
-
-
-
 class MemberList extends StatelessWidget {
-  final List<String> memberNames = List.generate(10, (index) => 'Member ${index + 1}');
+  final List<String> memberNames =
+      List.generate(10, (index) => 'Member ${index + 1}');
+
+  MemberList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -201,7 +205,7 @@ class MemberList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: memberNames.length,
         separatorBuilder: (context, index) => const SizedBox(width: 10),
-        itemBuilder: (context, index){
+        itemBuilder: (context, index) {
           return _buildMemberBox(context, memberNames[index]);
         },
       ),
@@ -209,7 +213,7 @@ class MemberList extends StatelessWidget {
   }
 
   Widget _buildMemberBox(BuildContext context, String name) {
-    return Container(
+    return SizedBox(
       width: 50,
       child: Stack(
         alignment: Alignment.center,

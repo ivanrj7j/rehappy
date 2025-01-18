@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Splash extends StatelessWidget {
+  const Splash({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -8,7 +10,8 @@ class Splash extends StatelessWidget {
         decoration: BoxDecoration(color: Color(0xFF232323)),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch, // Use stretch to fill the width
+          crossAxisAlignment:
+              CrossAxisAlignment.stretch, // Use stretch to fill the width
           children: [
             Expanded(
               child: Container(

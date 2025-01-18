@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Chat extends StatelessWidget {
+  const Chat({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -212,7 +214,8 @@ class ChatMessage extends StatelessWidget {
   final String? replyName;
   final String? replyMessage;
 
-  ChatMessage({
+  const ChatMessage({
+    super.key,
     required this.name,
     required this.message,
     required this.time,

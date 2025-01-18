@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CreateCommunity extends StatelessWidget {
+  const CreateCommunity({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,13 +33,14 @@ class CreateCommunity extends StatelessWidget {
     );
   }
 
-
   Widget _buildHeaderIcons(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Transform(
-          transform: Matrix4.identity()..translate(0.0, 0.0)..rotateZ(3.14),
+          transform: Matrix4.identity()
+            ..translate(0.0, 0.0)
+            ..rotateZ(3.14),
           child: Container(
             width: 33,
             height: 33,
@@ -50,7 +53,9 @@ class CreateCommunity extends StatelessWidget {
           ),
         ),
         Transform(
-          transform: Matrix4.identity()..translate(0.0, 0.0)..rotateZ(3.14),
+          transform: Matrix4.identity()
+            ..translate(0.0, 0.0)
+            ..rotateZ(3.14),
           child: Container(
             width: 33,
             height: 33,
@@ -66,7 +71,6 @@ class CreateCommunity extends StatelessWidget {
       ],
     );
   }
-
 
   Widget _buildCommunityPictureSection(BuildContext context) {
     return Center(
@@ -92,7 +96,7 @@ class CreateCommunity extends StatelessWidget {
           ),
           SizedBox(height: 10),
           GestureDetector(
-            onTap: (){
+            onTap: () {
               // Handle community image selection action
             },
             child: Container(
@@ -107,8 +111,7 @@ class CreateCommunity extends StatelessWidget {
                   shape: BoxShape.circle,
                   border: Border.all(
                     color: Color(0xFF424549),
-                  )
-              ),
+                  )),
               child: Center(
                 child: Container(
                   width: 25,
@@ -152,8 +155,7 @@ class CreateCommunity extends StatelessWidget {
                 border: OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey.shade700),
                   borderRadius: BorderRadius.circular(5),
-                )
-            ),
+                )),
           ),
         ],
       ),
@@ -185,9 +187,7 @@ class CreateCommunity extends StatelessWidget {
                   border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey.shade700),
                     borderRadius: BorderRadius.circular(5),
-                  )
-              )
-          ),
+                  ))),
         ],
       ),
     );
