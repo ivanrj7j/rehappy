@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'pages/login.dart';
+import 'package:rehappy/pages/Chat.dart';
+import 'package:rehappy/pages/craeteCommunity.dart';
+import 'package:rehappy/pages/login.dart';
+import 'package:rehappy/pages/options.dart';
+import 'pages/profile.dart';
 
 void main() {
   runApp(const MyApp());

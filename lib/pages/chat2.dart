@@ -17,7 +17,7 @@ class Chat extends StatelessWidget {
             _buildHeader(context),
             Expanded(
               child: SingleChildScrollView(
-                child:  Column(
+                child: Column(
                   children: [
                     _buildChatMessages(context),
                   ],
@@ -42,48 +42,45 @@ class Chat extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-              children: [
-                GestureDetector(
-                  onTap: (){
-                    // Handle back action
-                  },
-                  child: Transform(
-                    transform: Matrix4.identity()..translate(0.0, 0.0)..rotateZ(3.14),
-                    child: Container(
-                      width: 33,
-                      height: 33,
-                      decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage("https://via.placeholder.com/33x33"),
-                            fit: BoxFit.fill,
-                          ),
-                          shape: BoxShape.circle
+          Row(children: [
+            GestureDetector(
+              onTap: () {
+                // Handle back action
+              },
+              child: Transform(
+                transform: Matrix4.identity()
+                  ..translate(0.0, 0.0)
+                  ..rotateZ(3.14),
+                child: Container(
+                  width: 33,
+                  height: 33,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image:
+                            NetworkImage("https://via.placeholder.com/33x33"),
+                        fit: BoxFit.fill,
                       ),
-                    ),
-                  ),
+                      shape: BoxShape.circle),
                 ),
-                SizedBox(width: 10),
-                Container(
-                    width: 45,
-                    height: 45,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle
-                    )
-                ),
-                SizedBox(width: 10),
-                Text(
-                  'Community',
-                  style: TextStyle(
-                    color: Color(0xFFFBFCF6),
-                    fontSize: 40,
-                    fontFamily: 'Kdam Thmor Pro',
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ]
-          ),
+              ),
+            ),
+            SizedBox(width: 10),
+            Container(
+                width: 45,
+                height: 45,
+                decoration:
+                    BoxDecoration(color: Colors.white, shape: BoxShape.circle)),
+            SizedBox(width: 10),
+            Text(
+              'Community',
+              style: TextStyle(
+                color: Color(0xFFFBFCF6),
+                fontSize: 40,
+                fontFamily: 'Kdam Thmor Pro',
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ]),
           Container(
             width: 33,
             height: 33,
@@ -101,7 +98,7 @@ class Chat extends StatelessWidget {
   }
 
   Widget _buildChatMessages(BuildContext context) {
-    return  Column(
+    return Column(
       children: [
         _buildChatDateHeader(context, 'Month Date, Year'),
         ChatMessage(
@@ -117,8 +114,7 @@ class Chat extends StatelessWidget {
             userAvatarUrl: "https://via.placeholder.com/50x50",
             isReply: true,
             replyName: "@Name 1",
-            replyMessage: "Chat 1"
-        ),
+            replyMessage: "Chat 1"),
         _buildChatDateHeader(context, 'Month Date, Year'),
         ChatMessage(
           name: 'Name 3',
@@ -138,7 +134,6 @@ class Chat extends StatelessWidget {
     );
   }
 
-
   Widget _buildChatDateHeader(BuildContext context, String dateTime) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 10),
@@ -150,9 +145,7 @@ class Chat extends StatelessWidget {
             width: double.infinity,
             decoration: BoxDecoration(
                 border: Border(
-                    bottom: BorderSide(color: Color(0xFF424549), width: 1)
-                )
-            ),
+                    bottom: BorderSide(color: Color(0xFF424549), width: 1))),
           ),
           Container(
             padding: EdgeInsets.symmetric(horizontal: 10),
@@ -172,7 +165,6 @@ class Chat extends StatelessWidget {
     );
   }
 
-
   Widget _buildMessageInput(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
@@ -181,10 +173,7 @@ class Chat extends StatelessWidget {
             end: Alignment.bottomCenter,
             colors: [Color(0xFF252525), Color(0xFF222222)],
           ),
-          border: Border(
-              top: BorderSide(color: Color(0xFF424549), width: 1)
-          )
-      ),
+          border: Border(top: BorderSide(color: Color(0xFF424549), width: 1))),
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: Row(
         children: [
@@ -205,8 +194,7 @@ class Chat extends StatelessWidget {
               decoration: InputDecoration(
                   hintText: 'Enter message',
                   hintStyle: TextStyle(color: Colors.white),
-                  border: UnderlineInputBorder(borderSide: BorderSide.none)
-              ),
+                  border: UnderlineInputBorder(borderSide: BorderSide.none)),
             ),
           ),
         ],
@@ -214,8 +202,6 @@ class Chat extends StatelessWidget {
     );
   }
 }
-
-
 
 class ChatMessage extends StatelessWidget {
   final String name;
@@ -225,8 +211,6 @@ class ChatMessage extends StatelessWidget {
   final bool isReply;
   final String? replyName;
   final String? replyMessage;
-
-
 
   ChatMessage({
     required this.name,
@@ -246,16 +230,14 @@ class ChatMessage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           GestureDetector(
-            onTap: (){
+            onTap: () {
               // Handle user profile view
             },
             child: Container(
               width: 50,
               height: 50,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white
-              ),
+              decoration:
+                  BoxDecoration(shape: BoxShape.circle, color: Colors.white),
             ),
           ),
           SizedBox(width: 10),
@@ -263,7 +245,7 @@ class ChatMessage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                if(isReply) ...[
+                if (isReply) ...[
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
@@ -271,23 +253,19 @@ class ChatMessage extends StatelessWidget {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10),
                             topRight: Radius.circular(10),
-                            bottomRight: Radius.circular(10)
-                        )
-                    ),
+                            bottomRight: Radius.circular(10))),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        if(replyName !=null)
-                          Text(
-                              replyName!,
+                        if (replyName != null)
+                          Text(replyName!,
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 14,
                                 fontFamily: 'Kdam Thmor Pro',
                                 fontWeight: FontWeight.w400,
-                              )
-                          ),
-                        if(replyMessage != null)
+                              )),
+                        if (replyMessage != null)
                           Text(
                             '  $replyMessage',
                             style: TextStyle(

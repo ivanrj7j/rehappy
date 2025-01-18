@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'menu.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -26,12 +27,14 @@ class _LogInState extends State<LogIn> {
     // Perform login logic here
     print('Username: ${_usernameController.text}');
     print('Password: ${_passwordController.text}');
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Menu()));
     // Add your authentication logic or navigation here
   }
 
   void _signUp() {
     // Perform sign-up logic here
     print('Sign up requested');
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Menu()));
     // Add navigation or sign-up related actions
   }
 
