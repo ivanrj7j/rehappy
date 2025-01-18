@@ -316,7 +316,7 @@ class Header extends StatelessWidget {
                         decoration: const BoxDecoration(
                           image: DecorationImage(
                             image: NetworkImage(
-                                "https://via.placeholder.com/40x40"),
+                                "https://xsgames.co/randomusers/assets/images/favicon.png"),
                             fit: BoxFit.fill,
                           ),
                           shape: BoxShape.circle,

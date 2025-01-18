@@ -124,8 +124,8 @@ class _ChatState extends State<Chat> {
                       height: 33,
                       decoration: const BoxDecoration(
                         image: DecorationImage(
-                          image:
-                              NetworkImage("https://via.placeholder.com/33x33"),
+                          image: NetworkImage(
+                              "https://xsgames.co/randomusers/assets/images/favicon.png"),
                           fit: BoxFit.fill,
                         ),
                         shape: BoxShape.circle,
@@ -356,7 +356,8 @@ class _ChatState extends State<Chat> {
               height: 56,
               decoration: const BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage("https://via.placeholder.com/59x56"),
+                  image: NetworkImage(
+                      "https://xsgames.co/randomusers/assets/images/favicon.png"),
                   fit: BoxFit.fill,
                 ),
               ),
