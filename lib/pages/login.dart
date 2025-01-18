@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'menu.dart'; // Import the menu.dart file
 
 class LogIn extends StatefulWidget {
-  const LogIn({super.key});
-
   @override
   _LogInState createState() => _LogInState();
 }
@@ -42,6 +41,10 @@ class _LogInState extends State<LogIn> {
         final responseData = jsonDecode(response.body);
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(responseData['message'])));
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Menu())); // Navigate to menu
       } else {
         final responseData = jsonDecode(response.body);
         ScaffoldMessenger.of(context)
@@ -75,6 +78,10 @@ class _LogInState extends State<LogIn> {
         final responseData = jsonDecode(response.body);
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(responseData['message'])));
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Menu())); // Navigate to menu
       } else {
         final responseData = jsonDecode(response.body);
         ScaffoldMessenger.of(context)
@@ -191,8 +198,7 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
 
-  const CustomTextField({
-    super.key,
+  CustomTextField({
     required this.controller,
     required this.labelText,
     required this.hintText,
@@ -256,7 +262,7 @@ class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
 
-  const CustomButton({super.key, required this.text, required this.onPressed});
+  CustomButton({required this.text, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
