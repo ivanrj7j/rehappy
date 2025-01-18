@@ -104,23 +104,6 @@ class _ChatState extends State<Chat> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Transform(
-                      transform: Matrix4.identity()
-                        ..translate(0.0, 0.0)
-                        ..rotateZ(3.14),
-                      child: Container(
-                        width: 33,
-                        height: 33,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(
-                                "https://via.placeholder.com/33x33"),
-                            fit: BoxFit.fill,
-                          ),
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                    ),
                     const SizedBox(width: 10),
                     Expanded(
                         child: Align(
@@ -129,7 +112,7 @@ class _ChatState extends State<Chat> {
                               'Community',
                               style: const TextStyle(
                                 color: Color(0xFFFBFCF6),
-                                fontSize: 40,
+                                fontSize: 30, // Reduced text size
                                 fontFamily: 'Kdam Thmor Pro',
                                 fontWeight: FontWeight.w400,
                               ),
@@ -148,18 +131,6 @@ class _ChatState extends State<Chat> {
                     ),
                   ],
                 ),
-              ),
-            ),
-          ),
-          Positioned(
-            left: 52,
-            top: 52,
-            child: Container(
-              width: 45,
-              height: 45,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
               ),
             ),
           ),
@@ -189,6 +160,74 @@ class _ChatState extends State<Chat> {
     String? additionalChat,
     bool isFirstMessage = false,
   }) {
+    if (chat.startsWith('#task ')) {
+      String taskMessage = chat.substring(6); //remove #task and space
+      return Container(
+          margin: const EdgeInsets.only(left: 10, top: 20, right: 10),
+          padding: const EdgeInsets.all(10),
+          decoration: BoxDecoration(
+              color: const Color.fromRGBO(0, 25, 0, 1),
+              border: Border.all(
+                  color: const Color.fromRGBO(0, 64, 0, 1), width: 1)),
+          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Container(
+              width: 50,
+              height: 50,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          name,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontFamily: 'Kdam Thmor Pro',
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                        Text(
+                          time,
+                          style: const TextStyle(
+                            color: Color(0xFFFBFCF6),
+                            fontSize: 14,
+                            fontFamily: 'Kdam Thmor Pro',
+                            fontWeight: FontWeight.w400,
+                          ),
+                        )
+                      ]),
+                  Text(
+                    taskMessage,
+                    style: const TextStyle(
+                      color: Color(0xFFA6A9AD),
+                      fontSize: 18,
+                      fontFamily: 'Kdam Thmor Pro',
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  if (additionalChat != null)
+                    Text(
+                      additionalChat,
+                      style: const TextStyle(
+                        color: Color(0xFFA6A9AD),
+                        fontSize: 18,
+                        fontFamily: 'Kdam Thmor Pro',
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                ]))
+          ]));
+    }
+
     return Column(
       children: [
         if (atName != null)
@@ -231,45 +270,55 @@ class _ChatState extends State<Chat> {
                 )
               ])),
         Container(
-            margin: const EdgeInsets.only(left: 10, top: 20, right: 10),
-            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Container(
-                width: 50,
-                height: 50,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                ),
+          margin: const EdgeInsets.only(left: 10, top: 20, right: 10),
+          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Container(
+              width: 50,
+              height: 50,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
               ),
-              const SizedBox(width: 10),
-              Expanded(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                    Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            name,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontFamily: 'Kdam Thmor Pro',
-                              fontWeight: FontWeight.w400,
-                            ),
+                        Text(
+                          name,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontFamily: 'Kdam Thmor Pro',
+                            fontWeight: FontWeight.w400,
                           ),
-                          Text(
-                            time,
-                            style: const TextStyle(
-                              color: Color(0xFFFBFCF6),
-                              fontSize: 14,
-                              fontFamily: 'Kdam Thmor Pro',
-                              fontWeight: FontWeight.w400,
-                            ),
-                          )
-                        ]),
+                        ),
+                        Text(
+                          time,
+                          style: const TextStyle(
+                            color: Color(0xFFFBFCF6),
+                            fontSize: 14,
+                            fontFamily: 'Kdam Thmor Pro',
+                            fontWeight: FontWeight.w400,
+                          ),
+                        )
+                      ]),
+                  Text(
+                    chat,
+                    style: const TextStyle(
+                      color: Color(0xFFA6A9AD),
+                      fontSize: 18,
+                      fontFamily: 'Kdam Thmor Pro',
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  if (additionalChat != null)
                     Text(
-                      chat,
+                      additionalChat,
                       style: const TextStyle(
                         color: Color(0xFFA6A9AD),
                         fontSize: 18,
@@ -277,18 +326,9 @@ class _ChatState extends State<Chat> {
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    if (additionalChat != null)
-                      Text(
-                        additionalChat,
-                        style: const TextStyle(
-                          color: Color(0xFFA6A9AD),
-                          fontSize: 18,
-                          fontFamily: 'Kdam Thmor Pro',
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                  ]))
-            ])),
+                ]))
+          ]),
+        ),
       ],
     );
   }
@@ -391,6 +431,9 @@ class ChatMessage {
   final String message;
   final String time;
 
-  ChatMessage(
-      {required this.sender, required this.message, required this.time});
+  ChatMessage({
+    required this.sender,
+    required this.message,
+    required this.time,
+  });
 }
