@@ -11,13 +11,13 @@ class CommunityWidget extends StatelessWidget {
   final VoidCallback? onTap;
 
   const CommunityWidget({
-    super.key,
+    Key? key,
     required this.communityName,
     this.notificationCount = '2',
     this.width = 58.55,
     this.height = 62.15,
     this.onTap,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -107,10 +107,10 @@ class StreakCircle extends StatelessWidget {
   final String label;
 
   const StreakCircle({
-    super.key,
+    Key? key,
     required this.value,
     required this.label,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -185,10 +185,10 @@ class CustomButton extends StatelessWidget {
   final VoidCallback? onTap;
 
   const CustomButton({
-    super.key,
+    Key? key,
     required this.text,
     this.onTap,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -235,14 +235,14 @@ class Header extends StatelessWidget {
   final VoidCallback? onLogoTap;
 
   const Header({
-    super.key,
+    Key? key,
     this.onProfileTap,
     this.onLogoTap,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: 418,
       height: 130,
       child: Stack(
@@ -339,9 +339,9 @@ class RecentCommunityList extends StatelessWidget {
   final List<String> communityNames;
 
   const RecentCommunityList({
-    super.key,
+    Key? key,
     required this.communityNames,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -371,8 +371,6 @@ class RecentCommunityList extends StatelessWidget {
 
 // Main Menu Widget
 class Menu extends StatelessWidget {
-  const Menu({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
