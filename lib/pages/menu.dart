@@ -23,7 +23,7 @@ class CommunityWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
+      child: SizedBox(
         width: width,
         height: height,
         child: Stack(
@@ -39,9 +39,9 @@ class CommunityWidget extends StatelessWidget {
                   child: Container(
                     width: 50,
                     height: 50,
-                    decoration: ShapeDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
-                      shape: OvalBorder(),
+                      shape: BoxShape.circle,
                     ),
                   ),
                 ),
@@ -55,7 +55,7 @@ class CommunityWidget extends StatelessWidget {
                 child: Text(
                   communityName,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Color(0xFFFBFCF6),
                     fontSize: 8,
                     fontFamily: 'Kdam Thmor Pro',
@@ -70,9 +70,9 @@ class CommunityWidget extends StatelessWidget {
               child: Container(
                 width: 25,
                 height: 25,
-                decoration: ShapeDecoration(
+                decoration: const BoxDecoration(
                   color: Color(0xFFD9D9D9),
-                  shape: OvalBorder(),
+                  shape: BoxShape.circle,
                 ),
               ),
             ),
@@ -85,7 +85,7 @@ class CommunityWidget extends StatelessWidget {
                 child: Text(
                   notificationCount,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 13,
                     fontFamily: 'Kdam Thmor Pro',
@@ -114,7 +114,7 @@ class StreakCircle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 200,
       height: 200,
       child: Stack(
@@ -125,14 +125,18 @@ class StreakCircle extends StatelessWidget {
             child: Container(
               width: 200,
               height: 200,
-              decoration: ShapeDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment(0.00, -1.00),
                   end: Alignment(0, 1),
                   colors: [Color(0xFF232323), Color(0xFF202020)],
                 ),
-                shape: OvalBorder(
-                  side: BorderSide(width: 1, color: Colors.white),
+                shape: BoxShape.circle,
+                border: Border(
+                  top: BorderSide(width: 1, color: Colors.white),
+                  bottom: BorderSide(width: 1, color: Colors.white),
+                  left: BorderSide(width: 1, color: Colors.white),
+                  right: BorderSide(width: 1, color: Colors.white),
                 ),
               ),
             ),
@@ -146,7 +150,7 @@ class StreakCircle extends StatelessWidget {
               child: Text(
                 value,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 64,
                   fontFamily: 'Kdam Thmor Pro',
@@ -161,7 +165,7 @@ class StreakCircle extends StatelessWidget {
             child: Text(
               label,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 24,
                 fontFamily: 'Kdam Thmor Pro',
@@ -194,16 +198,14 @@ class CustomButton extends StatelessWidget {
         width: 121,
         height: 51,
         padding: const EdgeInsets.all(10),
-        decoration: ShapeDecoration(
-          gradient: LinearGradient(
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
             begin: Alignment(0.00, -1.00),
             end: Alignment(0, 1),
             colors: [Color(0xFF242424), Color(0xFF232323)],
           ),
-          shape: RoundedRectangleBorder(
-            side: BorderSide(width: 1, color: Color(0xFFA6A9AD)),
-            borderRadius: BorderRadius.circular(25),
-          ),
+          borderRadius: BorderRadius.circular(25),
+          border: Border.all(width: 1, color: const Color(0xFFA6A9AD)),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -213,7 +215,7 @@ class CustomButton extends StatelessWidget {
             Text(
               text,
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 20,
                 fontFamily: 'Kdam Thmor Pro',
@@ -251,22 +253,21 @@ class Header extends StatelessWidget {
             child: Container(
               width: 418,
               height: 130,
-              decoration: ShapeDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment(0.00, -1.00),
-                  end: Alignment(0, 1),
-                  colors: [Color(0xFF191919), Color(0xFF1A1A1A)],
-                ),
-                shape: RoundedRectangleBorder(
-                  side: BorderSide(width: 1, color: Color(0xFF424549)),
-                ),
-              ),
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment(0.00, -1.00),
+                    end: Alignment(0, 1),
+                    colors: [Color(0xFF191919), Color(0xFF1A1A1A)],
+                  ),
+                  border: Border(
+                    bottom: BorderSide(width: 1, color: Color(0xFF424549)),
+                  )),
             ),
           ),
           Positioned(
             left: 18,
             top: 53.41,
-            child: Container(
+            child: SizedBox(
               width: 381,
               height: 62.48,
               child: Stack(
@@ -282,7 +283,7 @@ class Header extends StatelessWidget {
                         child: Text(
                           'RehAPPy',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 40,
                             fontFamily: 'Kdam Thmor Pro',
@@ -298,9 +299,9 @@ class Header extends StatelessWidget {
                     child: Container(
                       width: 45,
                       height: 45,
-                      decoration: ShapeDecoration(
+                      decoration: const BoxDecoration(
                         color: Colors.white,
-                        shape: OvalBorder(),
+                        shape: BoxShape.circle,
                       ),
                     ),
                   ),
@@ -312,13 +313,13 @@ class Header extends StatelessWidget {
                       child: Container(
                         width: 40,
                         height: 40,
-                        decoration: ShapeDecoration(
+                        decoration: const BoxDecoration(
                           image: DecorationImage(
                             image: NetworkImage(
                                 "https://via.placeholder.com/40x40"),
                             fit: BoxFit.fill,
                           ),
-                          shape: OvalBorder(),
+                          shape: BoxShape.circle,
                         ),
                       ),
                     ),
@@ -344,26 +345,23 @@ class RecentCommunityList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: List.generate(
-          communityNames.length,
-          (index) => Padding(
-            padding: EdgeInsets.only(right: 1),
-            child: CommunityWidget(
-              communityName: communityNames[index],
-              height: index == communityNames.length - 1 ? 74.15 : 62.15,
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Chat()), // Navigate to Chat page
-                );
-              },
-            ),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: List.generate(
+        communityNames.length,
+        (index) => Padding(
+          padding: const EdgeInsets.only(right: 1),
+          child: CommunityWidget(
+            communityName: communityNames[index],
+            height: index == communityNames.length - 1 ? 74.15 : 62.15,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Chat()),
+              );
+            },
           ),
         ),
       ),
@@ -375,144 +373,141 @@ class RecentCommunityList extends StatelessWidget {
 class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: 412,
-          height: 917,
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment(0.00, -1.00),
-              end: Alignment(0, 1),
-              colors: [Color(0xFF191919), Color(0xFF252525)],
-            ),
+    return Scaffold(
+      body: Container(
+        width: 412,
+        height: 917,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment(0.00, -1.00),
+            end: Alignment(0, 1),
+            colors: [Color(0xFF191919), Color(0xFF252525)],
           ),
-          child: Stack(
-            children: [
-              // Header
-              Positioned(
-                left: -3,
-                top: -3,
-                child: Header(
-                  onProfileTap: () {
-                    print('Profile tapped');
-                    // Add profile navigation or action
-                  },
-                  onLogoTap: () {
-                    print('Logo tapped');
-                    // Add logo tap action
-                  },
+        ),
+        child: Stack(
+          children: [
+            // Header
+            Positioned(
+              left: -3,
+              top: -3,
+              child: Header(
+                onProfileTap: () {
+                  print('Profile tapped');
+                  // Add profile navigation or action
+                },
+                onLogoTap: () {
+                  print('Logo tapped');
+                  // Add logo tap action
+                },
+              ),
+            ),
+
+            // Recent Communities Text
+            Positioned(
+              left: 10,
+              top: 132,
+              child: Text(
+                'Recent communities',
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontFamily: 'Kdam Thmor Pro',
+                  fontWeight: FontWeight.w400,
                 ),
               ),
+            ),
 
-              // Recent Communities Text
-              Positioned(
-                left: 10,
-                top: 132,
-                child: Text(
-                  'Recent communities',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontFamily: 'Kdam Thmor Pro',
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
+            // Community List
+            Positioned(
+              left: 9,
+              top: 167.85,
+              child: RecentCommunityList(
+                communityNames:
+                    List.generate(10, (index) => 'Community ${index + 1}'),
               ),
+            ),
 
-              // Community List
-              Positioned(
-                left: 9,
-                top: 167.85,
-                child: RecentCommunityList(
-                  communityNames:
-                      List.generate(10, (index) => 'Community ${index + 1}'),
-                ),
-              ),
-
-              // Streak Section
-              Positioned(
-                left: 6,
-                top: 342,
-                child: Container(
-                  width: 400,
-                  height: 504,
-                  child: Stack(
-                    children: [
-                      // Streak Title
-                      Positioned(
-                        left: 116,
-                        top: 0,
-                        child: SizedBox(
-                          width: 171,
-                          height: 40,
-                          child: Text(
-                            'Streak',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 40,
-                              fontFamily: 'Kdam Thmor Pro',
-                              fontWeight: FontWeight.w400,
-                            ),
+            // Streak Section
+            Positioned(
+              left: 6,
+              top: 342,
+              child: SizedBox(
+                width: 400,
+                height: 504,
+                child: Stack(
+                  children: [
+                    // Streak Title
+                    Positioned(
+                      left: 116,
+                      top: 0,
+                      child: const SizedBox(
+                        width: 171,
+                        height: 40,
+                        child: Text(
+                          'Streak',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 40,
+                            fontFamily: 'Kdam Thmor Pro',
+                            fontWeight: FontWeight.w400,
                           ),
                         ),
                       ),
+                    ),
 
-                      // Year Circle
-                      Positioned(
-                        left: 100,
-                        top: 60,
-                        child: StreakCircle(value: '1', label: 'YEARS'),
-                      ),
+                    // Year Circle
+                    Positioned(
+                      left: 100,
+                      top: 60,
+                      child: const StreakCircle(value: '1', label: 'YEARS'),
+                    ),
 
-                      // Months Circle
-                      Positioned(
-                        left: 0,
-                        top: 233,
-                        child: StreakCircle(value: '11', label: 'MONTHS'),
-                      ),
+                    // Months Circle
+                    Positioned(
+                      left: 0,
+                      top: 233,
+                      child: const StreakCircle(value: '11', label: 'MONTHS'),
+                    ),
 
-                      // Days Circle
-                      Positioned(
-                        left: 200,
-                        top: 233,
-                        child: StreakCircle(value: '28', label: 'DAYS'),
-                      ),
+                    // Days Circle
+                    Positioned(
+                      left: 200,
+                      top: 233,
+                      child: const StreakCircle(value: '28', label: 'DAYS'),
+                    ),
 
-                      // Buttons
-                      Positioned(
-                        left: 39,
-                        top: 453,
-                        child: CustomButton(
-                          text: 'Add Streak',
-                          onTap: () {
-                            print('Add Streak tapped');
-                            // Add streak action
-                          },
-                        ),
+                    // Buttons
+                    Positioned(
+                      left: 39,
+                      top: 453,
+                      child: CustomButton(
+                        text: 'Add Streak',
+                        onTap: () {
+                          print('Add Streak tapped');
+                          // Add streak action
+                        },
                       ),
-                      Positioned(
-                        left: 239,
-                        top: 453,
-                        child: CustomButton(
-                          text: 'Stop streak',
-                          onTap: () {
-                            print('Stop Streak tapped');
-                            // Stop streak action
-                          },
-                        ),
+                    ),
+                    Positioned(
+                      left: 239,
+                      top: 453,
+                      child: CustomButton(
+                        text: 'Stop streak',
+                        onTap: () {
+                          print('Stop Streak tapped');
+                          // Stop streak action
+                        },
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
