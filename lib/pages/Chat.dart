@@ -17,7 +17,7 @@ class _ChatState extends State<Chat> {
     if (messageText.isNotEmpty) {
       setState(() {
         _messages.add(ChatMessage(
-            sender: 'User',
+            sender: 'You',
             message: messageText,
             time: _formatTime(DateTime.now())));
       });
